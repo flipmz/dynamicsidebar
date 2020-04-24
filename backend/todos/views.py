@@ -5,8 +5,10 @@ from rest_framework import generics
 from .models import Todo
 from .serializers import TodoSerializer
 
+
+
 class ListTodo(generics.ListAPIView):
-    queryset = Todo.objects.all()
+    queryset = Todo.objects.filter(parent__isnull=True)
     serializer_class = TodoSerializer
 
 class DetailTodo(generics.RetrieveAPIView):
